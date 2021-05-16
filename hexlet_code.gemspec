@@ -1,8 +1,8 @@
-require_relative 'lib/hexlet/code/version'
+require_relative 'lib/hexlet_code/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "hexlet-code"
-  spec.version       = Hexlet::Code::VERSION
+  spec.name          = "hexlet_code"
+  spec.version       = HexletCode::VERSION
   spec.authors       = ["1NQ457"]
   spec.email         = ["alex.kot14@gmail.com"]
 
