@@ -7,7 +7,7 @@ module HexletCode
       body = yield if block_given?
 
       formatted_attributes = attributes.each_with_object([]) do |(attribute, content), acc|
-        acc.push("#{attribute}=\"#{content}\"")
+        acc.push("#{attribute}=\"#{content}\"") unless content.nil?
       end
 
       tag = [name, *formatted_attributes].join(' ')

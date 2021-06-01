@@ -22,8 +22,7 @@ module HexletCode
             else
               HexletCode::Tag.build('input', type: 'text', value: value, name: attribute)
             end
-      @inner_tags.push label
-      @inner_tags.push tag
+      @inner_tags.push label, tag
     end
 
     def submit(value = 'Save')
