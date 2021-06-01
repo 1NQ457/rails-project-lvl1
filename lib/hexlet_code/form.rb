@@ -18,11 +18,12 @@ module HexletCode
       value = user[attribute]
       label = HexletCode::Tag.build('label', for: attribute) { attribute.capitalize }
       tag = if options[:as] == :text
-              HexletCode::Tag.build('textarea', cols: options[:cols] || '20',
+              HexletCode::Tag.build('textarea', class: option[:class],
+                                                cols: options[:cols] || '20',
                                                 rows: options[:rows] || '40',
                                                 name: attribute) { value }
             else
-              HexletCode::Tag.build('input', type: 'text', value: value, name: attribute)
+              HexletCode::Tag.build('input', class: option[:class], type: 'text', value: value, name: attribute)
             end
       @inner_tags.push label, tag
     end
