@@ -14,11 +14,13 @@ module HexletCode
       HexletCode::Tag.build('form', action: route, mathod: 'post') { inner_tags.join }
     end
 
-    def input(attribute, option = {})
+    def input(attribute, options = {})
       value = user[attribute]
       label = HexletCode::Tag.build('label', for: attribute) { attribute.capitalize }
-      tag = if option[:as] == :text
-              HexletCode::Tag.build('textarea', cols: '20', rows: '40', name: attribute) { value }
+      tag = if options[:as] == :text
+              HexletCode::Tag.build('textarea', cols: options[:cols] || '20',
+                                                rows: options[:rows] || '40',
+                                                name: attribute) { value }
             else
               HexletCode::Tag.build('input', type: 'text', value: value, name: attribute)
             end
