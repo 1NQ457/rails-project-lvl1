@@ -11,25 +11,23 @@ module HexletCode
     attr_accessor :inner_tags, :user
 
     def build(route = '#')
-      HexletCode::Tag.build('form', action: route, mathod: 'post') { inner_tags.join }
+      HexletCode::Tag.build('form', action: route, method: 'post') do
+        inner_tags.each_with_object([]) do |tag, result|
+          result.push tag.build
+        end.join
+      end
     end
 
     def input(attribute, options = {})
-      value = user[attribute]
-      label = HexletCode::Tag.build('label', for: attribute) { attribute.capitalize }
-      tag = if options[:as] == :text
-              HexletCode::Tag.build('textarea', class: options[:class],
-                                                cols: options[:cols] || '20',
-                                                rows: options[:rows] || '40',
-                                                name: attribute) { value }
-            else
-              HexletCode::Tag.build('input', class: options[:class], type: 'text', value: value, name: attribute)
-            end
+      label = HexletCode::Label.new(attribute)
+      tag = HexletCode::Input.new(user, attribute, options)
+
       @inner_tags.push label, tag
     end
 
     def submit(value = 'Save')
-      @inner_tags.push HexletCode::Tag.build('input', type: 'submit', value: value, name: 'commit')
+      submit = HexletCode::Submit.new(value)
+      @inner_tags.push submit
     end
   end
 end
