@@ -11,7 +11,7 @@ module HexletCode
     attr_accessor :name, :value
 
     def build
-      HexletCode::Tag.build(name, type: 'submit', value: value, name: 'commit')
+      Tag.build(name, type: 'submit', value: value, name: 'commit')
     end
   end
 end

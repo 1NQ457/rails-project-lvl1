@@ -2,18 +2,19 @@
 
 module HexletCode
   # Tag Builder
-  class Input
-    def initialize(attributes, label)
+  class Textarea
+    def initialize(attributes, value, label)
       @attributes = attributes
+      @value = value
       @label = label
     end
 
-    attr_accessor :attributes, :label
+    attr_accessor :attributes, :value, :label
 
     def build
       [
         label.build,
-        Tag.build('input', **attributes)
+        Tag.build('textarea', **@attributes) { value }
       ]
     end
   end

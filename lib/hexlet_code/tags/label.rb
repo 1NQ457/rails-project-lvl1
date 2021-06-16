@@ -12,7 +12,7 @@ module HexletCode
     attr_accessor :name, :attribute, :body
 
     def build
-      HexletCode::Tag.build(name, for: attribute) { body }
+      Tag.build(name, for: attribute) { body }
     end
   end
 end
