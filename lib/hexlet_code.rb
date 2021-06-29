@@ -4,6 +4,7 @@ module HexletCode
   autoload :Version, 'hexlet_code/version'
   autoload :Tag, 'hexlet_code/tag'
   autoload :Form, 'hexlet_code/form'
+  autoload :FormBuilder, 'hexlet_code/form_builder'
   autoload :Label, 'hexlet_code/tags/label'
   autoload :Input, 'hexlet_code/tags/input'
   autoload :Textarea, 'hexlet_code/tags/textarea'
@@ -13,7 +14,7 @@ module HexletCode
     def form_for(model, route = '#')
       form = Form.new model
       yield(form) if block_given?
-      form.build route
+      FormBuilder.build form, route
     end
   end
 end

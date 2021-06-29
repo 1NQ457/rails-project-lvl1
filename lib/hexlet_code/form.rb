@@ -10,14 +10,6 @@ module HexletCode
 
     attr_accessor :inner_tags, :model
 
-    def build(route = '#')
-      Tag.build('form', action: route, method: 'post') do
-        inner_tags.each_with_object([]) do |tag, result|
-          result.push tag.build
-        end.join
-      end
-    end
-
     def input(attribute, options = {})
       tags = if options[:as] == :text
                generate_textarea(attribute, options)
