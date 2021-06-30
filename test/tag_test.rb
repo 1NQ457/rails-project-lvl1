@@ -6,7 +6,7 @@ class TagTest < Minitest::Test
   def setup
     @single_tag = '<br>'
     @single_tag_with_attr = '<img src="path/to/image">'
-    @single_tag_with_empty_attr = '<br>'
+    @single_tag_with_empty_attr = '<option selected>'
     @pair_tag = '<label>Email</label>'
     @pair_tag_with_attr = '<label for="email">Email</label>'
     @pair_tag_with_empty_body = '<label></label>'
@@ -17,7 +17,7 @@ class TagTest < Minitest::Test
   def test_single_tag
     assert_equal @single_tag, HexletCode::Tag.build('br')
     assert_equal @single_tag_with_attr, HexletCode::Tag.build('img', src: 'path/to/image')
-    assert_equal @single_tag_with_empty_attr, HexletCode::Tag.build('br', for: nil)
+    assert_equal @single_tag_with_empty_attr, HexletCode::Tag.build('option', selected: nil)
   end
 
   def test_pair_tag

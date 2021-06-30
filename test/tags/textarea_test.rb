@@ -5,18 +5,13 @@ require 'test_helper'
 class TextareaTest < Minitest::Test
   def setup
     @textarea = ['<label for="job">Job</label>', '<textarea cols="20" rows="40" name="job">hexlet</textarea>']
-    @attributes = {
-      class: nil,
-      cols: '20',
-      rows: '40',
-      name: 'job'
-    }
-    @label = HexletCode::Label.new('job')
+    @structure = Struct.new(:name, :job, keyword_init: true)
+    @model = @structure.new name: 'rob', job: 'hexlet'
   end
 
   def teardown; end
 
   def test_textarea
-    assert_equal @textarea, HexletCode::Textarea.new(@attributes, 'hexlet', @label).build
+    assert_equal @textarea, HexletCode::Textarea.new(:job, { as: :text }, @model).build
   end
 end
