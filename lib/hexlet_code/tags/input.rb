@@ -3,9 +3,14 @@
 module HexletCode
   # Tag Builder
   class Input
-    def initialize(attributes, label)
-      @attributes = attributes
-      @label = label
+    def initialize(attribute, options, model)
+      @attributes = {
+        type: 'text',
+        name: attribute
+      }
+      @attributes[:class] = options[:class] unless options[:class].nil?
+      @attributes[:value] = model[attribute] unless model[attribute].nil?
+      @label = Label.new(attributes[:name])
     end
 
     attr_accessor :attributes, :label

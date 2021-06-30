@@ -3,10 +3,15 @@
 module HexletCode
   # Tag Builder
   class Textarea
-    def initialize(attributes, value, label)
-      @attributes = attributes
-      @value = value
-      @label = label
+    def initialize(attribute, options, model)
+      @attributes = {
+        cols: options[:cols] || '20',
+        rows: options[:rows] || '40',
+        name: attribute
+      }
+      @attributes[:class] = options[:class] unless options[:class].nil?
+      @value = model[attribute]
+      @label = Label.new(attributes[:name])
     end
 
     attr_accessor :attributes, :value, :label

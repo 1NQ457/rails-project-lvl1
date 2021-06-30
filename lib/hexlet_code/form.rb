@@ -11,36 +11,16 @@ module HexletCode
     attr_accessor :inner_tags, :model
 
     def input(attribute, options = {})
-      tags = if options[:as] == :text
-               generate_textarea(attribute, options)
+      tags = case options[:as]
+             when :text
+               Textarea.new(attribute, options, model)
+             when :selecte
+               Select.new(attribute, options, model)
              else
-               generate_input(attribute, options)
+               Input.new(attribute, options, model)
              end
 
       @inner_tags.push tags
-    end
-
-    def generate_textarea(attribute, options)
-      attributes = {
-        class: options[:class],
-        cols: options[:cols] || '20',
-        rows: options[:rows] || '40',
-        name: attribute
-      }
-      value = model[attribute]
-      label = Label.new(attributes[:name])
-      Textarea.new(attributes, value, label)
-    end
-
-    def generate_input(attribute, options)
-      attributes = {
-        class: options[:class],
-        type: 'text',
-        name: attribute,
-        value: model[attribute]
-      }
-      label = Label.new(attributes[:name])
-      Input.new(attributes, label)
     end
 
     def submit(value = 'Save')

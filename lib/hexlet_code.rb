@@ -8,6 +8,8 @@ module HexletCode
   autoload :Label, 'hexlet_code/tags/label'
   autoload :Input, 'hexlet_code/tags/input'
   autoload :Textarea, 'hexlet_code/tags/textarea'
+  autoload :Select, 'hexlet_code/tags/select/select'
+  autoload :Option, 'hexlet_code/tags/select/option'
   autoload :Submit, 'hexlet_code/tags/submit'
 
   class << self
