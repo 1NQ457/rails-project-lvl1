@@ -8,7 +8,7 @@ module HexletCode
         name: attribute
       }
       @attributes[:class] = options[:class] unless options[:class].nil?
-      @value = model[attribute]
+      @value = model.send(attribute)
       @inner_tags = options[:collection].each_with_object([]) do |name, acc|
         acc.push(Option.new(name, @value))
       end

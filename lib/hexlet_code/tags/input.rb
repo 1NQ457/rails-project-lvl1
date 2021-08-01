@@ -9,7 +9,7 @@ module HexletCode
         name: attribute
       }
       @attributes[:class] = options[:class] unless options[:class].nil?
-      @attributes[:value] = model[attribute] unless model[attribute].nil?
+      @attributes[:value] = model.send(attribute) unless model.send(attribute).nil?
       @label = Label.new(attributes[:name])
     end
 
